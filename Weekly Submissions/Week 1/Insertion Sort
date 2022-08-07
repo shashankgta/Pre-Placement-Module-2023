@@ -1,0 +1,17 @@
+class Solution(object):
+    def relativeSortArray(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: List[int]
+        """
+        
+        sorting_dict = {}
+        for i, v in enumerate(arr2):
+            sorting_dict[v] = i
+        has_value_in_dict = [ v for v in arr1 if v in sorting_dict ]
+        not_in_dict = sorted([ v for v in arr1 if v not in sorting_dict ])
+        
+        has_value_in_dict = sorted(has_value_in_dict, key = lambda x: sorting_dict[x])
+        return has_value_in_dict + not_in_dict
+        
